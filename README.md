@@ -14,6 +14,8 @@ Provides 'model' concept of the MVC pattern. It directly manages the data, logic
     @@@@    class AddToDo():
             '''Contains the logic of ToDo list.'''
 
+            filename = 'ToDo_list.txt'
+
             Methods:
                 add_item(self, filename):
                 modify_item(self, filename):
