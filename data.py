@@ -1,5 +1,5 @@
-class AddToDo():
-    '''Contains the logic of ToDo list.'''
+class ToDoArray():
+    '''Contains the logic of ToDo items collection.'''
 
     def add_item(self, filename):
         pass
@@ -26,7 +26,7 @@ class AddToDo():
         pass
 
 
-class ToDoItem(AddToDo):
+class ToDoItem(ToDoArray):
     '''Creates item instance.'''
 
     def __init__(self, name, description, is_done=False):
