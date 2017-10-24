@@ -11,8 +11,8 @@ for data.py or display.py.
 
 Provides 'model' concept of the MVC pattern. It directly manages the data, logic and rules of the application.
 
-    @@@@    class AddToDo():
-            '''Contains the logic of ToDo list.'''
+    @@@@    class ToDoArray():
+            '''Contains the logic of ToDo items collection.'''
 
             filename = 'ToDo_list.txt'
 
