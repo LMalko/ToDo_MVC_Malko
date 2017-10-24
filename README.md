@@ -26,7 +26,7 @@ Provides 'model' concept of the MVC pattern. It directly manages the data, logic
                 display_done(self, filename):
                 display_to_be_done(self, filename):
 
-    @@@@    class ToDoItem(AddToDo):
+    @@@@    class ToDoItem(ToDoArray):
             '''Creates item instance.'''
             
             Methods:
