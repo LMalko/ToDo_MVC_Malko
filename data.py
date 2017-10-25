@@ -1,14 +1,18 @@
 class ToDoArray():
     '''Contains the logic of ToDo items collection.'''
 
-    def add_item(item, filename='ToDo_list.txt'):
+    def add_item(ToDoItem, filename='ToDo_list.txt'):
 
         # Assign new ID to each new item by checking the length of the current collection.
         with open(filename, "r", encoding="utf-8") as myfile:
             items_ID = len(myfile.readlines()) + 1
 
         with open(filename, "a", encoding="utf-8") as myfile:
-            myfile.write(str('{:04d}'.format(items_ID)) + " " + str(item) + "\n")
+            myfile.write(str('{:04d}'.format(items_ID)) + " " + str(ToDoItem) + "\n")
+
+    def check_which_item():
+        pass
+        modify_item(searched_expression, expression_to_delete=None, expression_to_insert=None)
 
     def modify_item(searched_expression,
                     filename='ToDo_list.txt',

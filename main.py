@@ -20,22 +20,13 @@ def add_todo_item():
     main()
 
 
-def act_according_to_user_choice(user_choice):
+def call_function_according_to_user_choice(user_choice):
 
     if user_choice == "1":
         add_todo_item()
     if user_choice == "2" or user_choice == "3":
         searched_expression = input("Which item's status changed? ")
         ToDoArray.modify_item(searched_expression)
-
-
-def print_options():
-
-    options = ["1. Add ToDo item.", "2. Mark item as done.", "3. Mark item as not done.",
-               "4. Delete item.", "5. Modify item.", "6. Search for item.", "7. Display all items."]
-
-    for item in options:
-        print(item)
 
 
 def main():
@@ -46,7 +37,7 @@ def main():
         user_choice = input("\nSelect option by number: ")
         if user_choice in ["1", "2", "3"]:
             break
-    act_according_to_user_choice(user_choice)
+    call_function_according_to_user_choice(user_choice)
 
 
 if __name__ == "__main__":
