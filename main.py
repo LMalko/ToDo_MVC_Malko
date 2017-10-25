@@ -1,18 +1,30 @@
 from display import *
 from data import *
+import re
 
 
-def add_todo_item():
+def pass_todo_item_details():
 
-    item_name = '{:.20}'.format(input("\nProvide item's name (max 20 characters). "))
-    item_description = '{:.150}'.format(input("\nProvide item's description (max 150 characters)."))
+    while True:
+        item_name = '{:.20}'.format(input("\nProvide item's name (max 20 characters). "))
+        if re.findall(r"[)(]", item_name):
+            print("Name contains one of the forbidden signs.")
+            continue
+        break
+
+    while True:
+        item_description = '{:.150}'.format(input("\nProvide item's description (max 150 characters). "))
+        if re.findall(r"[)(]", item_description):
+            print("Name contains one of the forbidden signs.")
+            continue
+        break
 
     while True:
         item_is_done = input("\nHas item been done already (y/n)? ")
-        if item_is_done == "y":
+        if item_is_done.lower() == "y":
             new_item = ToDoItem(item_name, item_description, True)
             break
-        if item_is_done == "n":
+        if item_is_done.lower() == "n":
             new_item = ToDoItem(item_name, item_description)
             break
 
@@ -23,10 +35,18 @@ def add_todo_item():
 def call_function_according_to_user_choice(user_choice):
 
     if user_choice == "1":
-        add_todo_item()
-    if user_choice == "2" or user_choice == "3":
-        searched_expression = input("Which item's status changed? ")
-        ToDoArray.modify_item(searched_expression)
+        pass_todo_item_details()
+    elif user_choice == "2":
+        searched_expression = input("Which item's is done? ")
+        ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
+    elif user_choice == "3":
+        searched_expression = input("Which item's is not done? ")
+        ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
+    elif user_choice == "4":
+        ToDoArray.choose_which_item_to_change()
+    elif user_choice == "5":
+        ToDoArray.delete_item()
+        main()
 
 
 def main():
@@ -35,7 +55,7 @@ def main():
     print_options()
     while True:
         user_choice = input("\nSelect option by number: ")
-        if user_choice in ["1", "2", "3"]:
+        if user_choice in ["1", "2", "3", "4", "5"]:
             break
     call_function_according_to_user_choice(user_choice)
 
