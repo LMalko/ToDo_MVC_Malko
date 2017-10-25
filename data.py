@@ -10,32 +10,56 @@ class ToDoArray():
         with open(filename, "a", encoding="utf-8") as myfile:
             myfile.write(str('{:04d}'.format(items_ID)) + " " + str(ToDoItem) + "\n")
 
-    def check_which_item():
-        pass
-        modify_item(searched_expression, expression_to_delete=None, expression_to_insert=None)
+    def check_which_item_to_change(filename='ToDo_list.txt'):
+
+        with open(filename, "r", encoding="utf-8") as myfile:
+            todo_array = myfile.readlines()
+
+            item_found = False
+            while not item_found:
+                searched_expression = input("\nWhich item to modify? ")
+                for line in todo_array:
+                    if searched_expression in line:
+                        print("Item found!")
+                        item_found = True
+                if item_found is False:
+                    print("Item not found, please try again.")
+
+            ToDoArray.choose_name_or_description(searched_expression)
+
+    def choose_name_or_description(searched_expression):
+
+        while True:
+            user_choice = input("\nModify name or description (n/d) ? ")
+            if user_choice.lower() in ["n"]:
+                expression_to_delete = "Change name."
+                break
+            elif user_choice.lower() in ["n"]:
+                expression_to_delete = "Change description."
+                break
+
+        expression_to_insert = input("Write now new description: ")
+
+        ToDoArray.modify_item(searched_expression, expression_to_delete, expression_to_insert)
 
     def modify_item(searched_expression,
-                    filename='ToDo_list.txt',
-                    expression_to_delete=None,
-                    expression_to_insert=None):
+                    expression_to_delete,
+                    expression_to_insert,
+                    filename='ToDo_list.txt'):
 
         with open(filename, "r", encoding="utf-8") as myfile:
             todo_array = myfile.readlines()
 
         for line in todo_array:
             if searched_expression in line:
-                print("You have modified this item: ", line, "The changes have been recorded.")
-                # If "expression_to_delete" is not provided, the method will change the "is done" status.
-                if "is not done" in line:
-                    todo_array[todo_array.index(line)] = line.replace("is not done", "is done")
-                elif expression_to_delete is not None and expression_to_delete in line:
-                    todo_array[todo_array.index(line)] = line.replace(expression_to_delete, expression_to_insert)
-                else:
-                    todo_array[todo_array.index(line)] = line.replace("is done", "is not done")
+                print("You have modified this item: ", line, "\nThe changes have been recorded.")
+                todo_array[todo_array.index(line)] = line.replace(expression_to_delete, expression_to_insert)
 
         with open(filename, "w", encoding="utf-8") as myfile:
             for line in todo_array:
                 myfile.write(line)
+                if searched_expression in line:
+                    print("Now it looks like this: ", line)
 
     def delete_item(filename):
         pass
