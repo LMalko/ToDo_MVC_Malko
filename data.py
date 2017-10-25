@@ -1,14 +1,37 @@
 class ToDoArray():
     '''Contains the logic of ToDo items collection.'''
 
-    filename = 'ToDo_list.txt'
+    def add_item(item, filename='ToDo_list.txt'):
 
-    def add_item(item, filename=filename):
+        # Assign new ID to each new item by checking the length of the current collection.
+        with open(filename, "r", encoding="utf-8") as myfile:
+            items_ID = len(myfile.readlines()) + 1
+
         with open(filename, "a", encoding="utf-8") as myfile:
-            myfile.write(str(item) + "\n")
+            myfile.write(str('{:04d}'.format(items_ID)) + " " + str(item) + "\n")
 
-    def modify_item(filename):
-        pass
+    def modify_item(searched_expression,
+                    filename='ToDo_list.txt',
+                    expression_to_delete=None,
+                    expression_to_insert=None):
+
+        with open(filename, "r", encoding="utf-8") as myfile:
+            todo_array = myfile.readlines()
+
+        for line in todo_array:
+            if searched_expression in line:
+                print("You have modified this item: ", line, "The changes have been recorded.")
+                # If "expression_to_delete" is not provided, the method will change the "is done" status.
+                if "is not done" in line:
+                    todo_array[todo_array.index(line)] = line.replace("is not done", "is done")
+                elif expression_to_delete is not None and expression_to_delete in line:
+                    todo_array[todo_array.index(line)] = line.replace(expression_to_delete, expression_to_insert)
+                else:
+                    todo_array[todo_array.index(line)] = line.replace("is done", "is not done")
+
+        with open(filename, "w", encoding="utf-8") as myfile:
+            for line in todo_array:
+                myfile.write(line)
 
     def delete_item(filename):
         pass
@@ -40,13 +63,9 @@ class ToDoItem(ToDoArray):
 
     def __str__(self):
 
-        status = "is not done."
+        self.item_status = "is not done."
 
         if self.is_done:
-            status = "is done."
+            self.item_status = "is done."
 
-        return self.name + " (" + self.description + ") " + status
-
-a = ToDoItem("wyjechać", "z dyni i z węża", True)
-
-a.add_item()
+        return self.name + " (" + self.description + ") " + self.item_status
