@@ -18,9 +18,11 @@ class ToDoArray():
             item_found = False
             while not item_found:
                 searched_expression = input("\nWhich item to modify? ")
+                # Make sure that the searched expression is not is_done status, which is all upper case.
+                searched_expression = searched_expression[0] + searched_expression[1:].lower()
                 for line in todo_array:
                     if searched_expression in line:
-                        print("Item found!")
+                        print("Item found!", line)
                         item_found = True
                 if item_found is False:
                     print("Item not found, please try again.")
@@ -33,12 +35,12 @@ class ToDoArray():
             user_choice = input("\nModify name or description (n/d) ? ")
             if user_choice.lower() in ["n"]:
                 expression_to_delete = "Change name."
+                expression_to_insert = input("Write here new name: ").capitalize() + "."
                 break
-            elif user_choice.lower() in ["n"]:
+            elif user_choice.lower() in ["d"]:
                 expression_to_delete = "Change description."
+                expression_to_insert = input("Write here new description: ").capitalize() + "."
                 break
-
-        expression_to_insert = input("Write now new description: ")
 
         ToDoArray.modify_item(searched_expression, expression_to_delete, expression_to_insert)
 
@@ -52,10 +54,20 @@ class ToDoArray():
 
         for line in todo_array:
             if searched_expression in line:
-                print("You have modified this item: ", line, "\nThe changes have been recorded.")
+                if expression_to_delete == "Change name.":
+                    expression_to_delete = line.split(" ", maxsplit=1)[1].split("(")[0]
+                    # For the purpose of displaying new item in the next loop:
+                    searched_expression = expression_to_insert
+                elif expression_to_delete == "Change description.":
+                    expression_to_delete = line.split("(", maxsplit=1)[1].split(")")[0]
+                    searched_expression = expression_to_insert
+                else:
+                    expression_to_delete = line.split(")", maxsplit=1)[1]
+                print("\nYou have modified this item: ", line, "\n\nThe changes have been recorded.\n")
                 todo_array[todo_array.index(line)] = line.replace(expression_to_delete, expression_to_insert)
 
         with open(filename, "w", encoding="utf-8") as myfile:
+
             for line in todo_array:
                 myfile.write(line)
                 if searched_expression in line:
@@ -85,15 +97,15 @@ class ToDoItem(ToDoArray):
 
     def __init__(self, name, description, is_done=False):
 
-        self.name = name.capitalize() + "."
-        self.description = description.capitalize() + "."
+        self.name = name.lower().capitalize() + "."
+        self.description = description.lower().capitalize() + "."
         self.is_done = is_done
 
     def __str__(self):
 
-        self.item_status = "is not done."
+        self.item_status = "IS NOT DONE."
 
         if self.is_done:
-            self.item_status = "is done."
+            self.item_status = "IS DONE."
 
         return self.name + " (" + self.description + ") " + self.item_status
