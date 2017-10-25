@@ -11,26 +11,26 @@ for data.py or display.py.
 
 Provides 'model' concept of the MVC pattern. It directly manages the data, logic and rules of the application.
 
-    @@@@    class ToDoArray():
+    @@@@    class ToDoArray()
             '''Contains the logic of ToDo items collection.'''
 
-            filename = 'ToDo_list.txt'
-
             Methods:
-                add_item(self, filename):
-                modify_item(self, filename):
-                delete_item(self, filename):
-                display_all(self, filename):
-                display_specific_item(self, filename):
-                search_for_item(keyword, filename):
-                display_done(self, filename):
-                display_to_be_done(self, filename):
+                add_item(ToDoItem, filename='ToDo_list.txt')
+                def modify_item(searched_expression, filename='ToDo_list.txt', expression_to_delete=None,
+                                expression_to_insert=None)
+                delete_item(filename='ToDo_list.txt')
+                display_all(filename='ToDo_list.txt')
+                display_specific_item(filename='ToDo_list.txt')
+                search_for_item(keyword, filename='ToDo_list.txt')
+                display_done(filename='ToDo_list.txt')
+                display_to_be_done(filename='ToDo_list.txt')
 
-    @@@@    class ToDoItem(ToDoArray):
+    @@@@    class ToDoItem(ToDoArray)
             '''Creates item instance.'''
             
             Methods:
-                __init__(self, name, description, is_done=False):
+                __init__(self, name, description, is_done=False)
+                __str__(self)
 
 ###         3. display.py
 
