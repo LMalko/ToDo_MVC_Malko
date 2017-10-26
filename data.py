@@ -23,6 +23,7 @@ class ToDoArray():
             item_found = False
             while not item_found:
                 while True:
+                        ToDoArray.display_all()
                         searched_expression = input("\nWhich item to modify? ")
                         reasonable_length = 3
                         if len(searched_expression) > reasonable_length:
@@ -144,6 +145,7 @@ class ToDoArray():
         items_details = []
         with open(filename, "r", encoding="utf-8") as myfile:
             for line in myfile:
+                # Get rid of blank/ deleted items.
                 if line[0] != "\n":
                     items_details.append(line)
 

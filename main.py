@@ -32,6 +32,7 @@ def pass_todo_item_details():
     new_item = ToDoItem(item_name, item_description)
 
     new_item.add_item()
+    print("\n\nThe item was successfully created!")
     main()
 
 
