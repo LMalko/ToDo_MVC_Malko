@@ -39,14 +39,18 @@ def call_function_according_to_user_choice(user_choice):
 
     if user_choice == "1":
         pass_todo_item_details()
+        main()
     elif user_choice == "2":
         searched_expression = input("\nWhich item's is done? ")
         ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
+        main()
     elif user_choice == "3":
         searched_expression = input("\nWhich item's is not done? ")
         ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
+        main()
     elif user_choice == "4":
         ToDoArray.choose_which_item_to_change()
+        main()
     elif user_choice == "5":
         ToDoArray.delete_item()
         main()
@@ -61,10 +65,13 @@ def call_function_according_to_user_choice(user_choice):
         main()
     elif user_choice == "7":
         ToDoArray.display_all()
+        main()
     elif user_choice == "8":
         ToDoArray.display_done()
+        main()
     elif user_choice == "9":
         ToDoArray.display_to_be_done()
+        main()
 
 
 def main():

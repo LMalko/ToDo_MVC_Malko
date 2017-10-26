@@ -6,4 +6,4 @@
 
 
 0008 Zebrać śmieci. (Wyjść na zewnątrz.) IS DONE
-0009 Dews. (Wsiła skisła.) IS DONE.
+0009 Dews. (Wsiła skisła.) IS DONE
