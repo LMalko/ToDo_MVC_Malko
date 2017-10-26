@@ -106,7 +106,7 @@ class ToDoArray():
         with open(filename, "w", encoding="utf-8") as myfile:
 
             for line in todo_array:
-                myfile.write(line)                           # plus zabezpiecz kazdy input przed spacjami
+                myfile.write(line)
             print("\nNow it looks like this: ", line_to_insert)
 
     def delete_item(filename='ToDo_list.txt'):
@@ -155,7 +155,7 @@ class ToDoArray():
         with open(filename, "r", encoding="utf-8") as myfile:
             for line in myfile:
                 if keyword in line:
-                    items_found = 1   
+                    items_found = 1
                     pretty_print_table([line])
             if items_found == 0:
                 print("\nNo such item.\n")
