@@ -40,16 +40,31 @@ def call_function_according_to_user_choice(user_choice):
     if user_choice == "1":
         pass_todo_item_details()
     elif user_choice == "2":
-        searched_expression = input("Which item's is done? ")
+        searched_expression = input("\nWhich item's is done? ")
         ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
     elif user_choice == "3":
-        searched_expression = input("Which item's is not done? ")
+        searched_expression = input("\nWhich item's is not done? ")
         ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
     elif user_choice == "4":
         ToDoArray.choose_which_item_to_change()
     elif user_choice == "5":
         ToDoArray.delete_item()
         main()
+    elif user_choice == "6":
+        while True:
+            keyword = input("\nWhich item You are looking for? ")
+            reasonable_length = 3
+            if len(keyword) > reasonable_length:
+                break
+            print("Too short.")
+        ToDoArray.display_specific_item(keyword)
+        main()
+    elif user_choice == "7":
+        ToDoArray.display_all()
+    elif user_choice == "8":
+        ToDoArray.display_done()
+    elif user_choice == "9":
+        ToDoArray.display_to_be_done()
 
 
 def main():
@@ -58,7 +73,7 @@ def main():
     print_options()
     while True:
         user_choice = input("\nSelect option by number: ")
-        if user_choice in ["1", "2", "3", "4", "5"]:
+        if user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
             break
     call_function_according_to_user_choice(user_choice)
 
