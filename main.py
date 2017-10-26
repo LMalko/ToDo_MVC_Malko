@@ -66,12 +66,17 @@ def call_function_according_to_user_choice(user_choice):
         go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "4":
+        clear_screen()
         ToDoArray.choose_which_item_to_change()
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "5":
+        clear_screen()
         ToDoArray.delete_item()
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "6":
+        clear_screen()
         while True:
             keyword = input("\nWhich item You are looking for? ")
             reasonable_length = 3
@@ -79,6 +84,7 @@ def call_function_according_to_user_choice(user_choice):
                 break
             print("Too short.")
         ToDoArray.display_specific_item(keyword)
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "7":
         clear_screen()
@@ -95,6 +101,9 @@ def call_function_according_to_user_choice(user_choice):
         ToDoArray.display_to_be_done()
         go_to_next_screen = input("\n\nPress enter to continue")
         main()
+    elif user_choice == "0":
+        clear_screen()
+        quit()
 
 
 def main():
@@ -104,7 +113,7 @@ def main():
     print_options()
     while True:
         user_choice = input("\nSelect option by number: ")
-        if user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+        if user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]:
             break
     call_function_according_to_user_choice(user_choice)
 

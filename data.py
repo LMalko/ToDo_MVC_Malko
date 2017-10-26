@@ -13,7 +13,7 @@ class ToDoArray():
             items_ID = len(myfile.readlines()) + 1
 
         with open(filename, "a", encoding="utf-8") as myfile:
-            myfile.write(str('{:04d}'.format(items_ID)) + " " + str(ToDoItem) + "\n")
+            myfile.write(str('{:06d}'.format(items_ID)) + " " + str(ToDoItem) + "\n")
 
     def choose_which_item_to_change(filename='ToDo_list.txt'):
 
@@ -25,17 +25,19 @@ class ToDoArray():
                 while True:
                         ToDoArray.display_all()
                         searched_expression = input("\nWhich item to modify? ")
-                        reasonable_length = 3
+                        reasonable_length = 5
                         if len(searched_expression) > reasonable_length:
                             break
+                        clear_screen()
                         print("\nToo short.\n")
                 for line in todo_array:
                     if searched_expression in line.split(")")[0]:
-                        print("Item found!", line)
+                        print("\nItem found!", line)
                         user_choice = input("\nIs that what You were looking for? Y if yes, sth else to search more: ")
                         if user_choice.lower() == "y":
                             item_found = True
                             break
+                        clear_screen()
                         print("\nNext time be more specific.\n")
                 if item_found is False:
                     print("\nPlease try again.\n")
@@ -72,7 +74,7 @@ class ToDoArray():
                         continue
                     break
                 break
-
+        clear_screen()
         ToDoArray.modify_item(searched_expression, expression_to_delete, expression_to_insert)
 
     def modify_item(searched_expression,
@@ -118,12 +120,14 @@ class ToDoArray():
                 items_deleted = 0
                 while True:
                     searched_expression = input("Choose item to delete: ")
-                    if len(searched_expression) > 0:
+                    reasonable_input_minimum_length = 5
+                    if len(searched_expression) > reasonable_input_minimum_length:
                         break
+                    print("\n\nToo short.")
                 for line in todo_array:
                     if searched_expression in line.split(")")[0]:
                         print("Found it: ", line)
-                        user_choice = input("Are You sure? Press Y if yes, otherwise go back to menu.")
+                        user_choice = input("Are You sure? Press Y if yes, otherwise abort.")
                         items_deleted = "User changed his mind."
                         if user_choice.lower() == "y":
                             items_deleted = 1

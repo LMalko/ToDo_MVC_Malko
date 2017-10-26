@@ -1,4 +1,4 @@
-0001 Zrobić zakupy. (Kupić bułki, mąke, piwko, oregano i kopiec kreta.) IS NOT DONE
-0002 Kupić fife 18 i dote. (Rozdac gry potrzebujacym dzieciom z vanuatu.) IS NOT DONE
-0003 Ugotować obiad. (Obrać ziemniaki, dobrac sztućce, wsypać sól, umyc patelnię.) IS DONE
-0004 Pojechać na statoil. (Odebrac punkty i wymienić na suszarkę i parówki.) IS NOT DONE
+000001 Zrobić zakupy. (Kupić bułki, mąke, piwko, oregano i kopiec kreta.) IS NOT DONE.
+000002 Kupić fife 18 i dote. (Rozdac gry potrzebujacym dzieciom z vanuatu.) IS NOT DONE.
+000003 Ugotować obiad. (Obrać ziemniaki, dobrac sztućce, wsypać sól, umyc patelnię.) IS NOT DONE.
+000004 Pojechać na statoil. (Odebrać punkty i wymienić na podpałkę pod grilla i parówki .) IS NOT DONE.
