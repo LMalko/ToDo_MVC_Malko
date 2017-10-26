@@ -1,6 +1,7 @@
 from display import *
 from data import *
 import re
+import time
 
 
 def pass_todo_item_details():
@@ -33,6 +34,7 @@ def pass_todo_item_details():
 
     new_item.add_item()
     print("\n\nThe item was successfully created!")
+    time.sleep(2)
     main()
 
 
@@ -42,12 +44,26 @@ def call_function_according_to_user_choice(user_choice):
         pass_todo_item_details()
         main()
     elif user_choice == "2":
-        searched_expression = input("\nWhich item's is done? ")
+        while True:
+            searched_expression = input("\nWhich item's is done? ")
+            reasonable_input_minimum_length = 5
+            if len(searched_expression) > reasonable_input_minimum_length:
+                break
+            print("\n\nToo short.")
+        clear_screen()
         ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "3":
-        searched_expression = input("\nWhich item's is not done? ")
+        while True:
+            searched_expression = input("\nWhich item's is not done? ")
+            reasonable_input_minimum_length = 5
+            if len(searched_expression) > reasonable_input_minimum_length:
+                break
+            print("\n\nToo short.")
+        clear_screen()
         ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "4":
         ToDoArray.choose_which_item_to_change()
@@ -65,18 +81,25 @@ def call_function_according_to_user_choice(user_choice):
         ToDoArray.display_specific_item(keyword)
         main()
     elif user_choice == "7":
+        clear_screen()
         ToDoArray.display_all()
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "8":
+        clear_screen()
         ToDoArray.display_done()
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
     elif user_choice == "9":
+        clear_screen()
         ToDoArray.display_to_be_done()
+        go_to_next_screen = input("\n\nPress enter to continue")
         main()
 
 
 def main():
 
+    clear_screen()
     print("\n\nToDo app \n\n")
     print_options()
     while True:
