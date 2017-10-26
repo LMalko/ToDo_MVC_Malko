@@ -15,13 +15,13 @@ Provides 'model' concept of the MVC pattern. It directly manages the data, logic
             '''Contains the logic of ToDo items collection.'''
 
             Methods:
-                add_item(ToDoItem, filename='ToDo_list.txt')
-                def modify_item(searched_expression, filename='ToDo_list.txt', expression_to_delete=None,
-                                expression_to_insert=None)
+                def add_item(ToDoItem, filename='ToDo_list.txt')
+                def choose_which_item_to_change(filename='ToDo_list.txt')
+                def choose_name_or_description(searched_expression)
+                def modify_item(searched_expression, expression_to_delete, expression_to_insert, filename='ToDo_list.txt')
                 delete_item(filename='ToDo_list.txt')
                 display_all(filename='ToDo_list.txt')
-                display_specific_item(filename='ToDo_list.txt')
-                search_for_item(keyword, filename='ToDo_list.txt')
+                display_specific_item(keyword, filename='ToDo_list.txt')
                 display_done(filename='ToDo_list.txt')
                 display_to_be_done(filename='ToDo_list.txt')
 
