@@ -1,4 +1,5 @@
 import time
+import re
 
 
 class ToDoArray():
@@ -20,14 +21,20 @@ class ToDoArray():
 
             item_found = False
             while not item_found:
-                searched_expression = input("\nWhich item to modify? ")
-
+                while True:
+                        searched_expression = input("\nWhich item to modify? ")
+                        if len(searched_expression) > 0:
+                            break
                 for line in todo_array:
                     if searched_expression in line.split(")")[0]:
                         print("Item found!", line)
-                        item_found = True
+                        user_choice = input("Is that the one You were looking for? Y if yes, sth else to search more: ")
+                        if user_choice.lower() == "y":
+                            item_found = True
+                            break
+                        print("\nNext time be more specific.")
                 if item_found is False:
-                    print("Item not found, please try again.")
+                    print("\nPlease try again.")
 
             ToDoArray.choose_name_or_description(searched_expression)
 
@@ -37,11 +44,29 @@ class ToDoArray():
             user_choice = input("\nModify name or description (n/d)? ")
             if user_choice.lower() in ["n"]:
                 expression_to_delete = "Change name."
-                expression_to_insert = input("Write here new name: ").capitalize() + "."
+                while True:
+                    while True:
+                        expression_to_insert = '{:.20}'.format(input("Write here new name: ").capitalize()) + "."
+                        dot_in_input = 1
+                        if len(expression_to_insert) > dot_in_input:
+                            break
+                    if re.findall(r"[)(0]", expression_to_insert):
+                        print("Name contains one of the forbidden signs : '(', ')', '0'.")
+                        continue
+                    break
                 break
             elif user_choice.lower() in ["d"]:
                 expression_to_delete = "Change description."
-                expression_to_insert = input("Write here new description: ").capitalize() + "."
+                while True:
+                    while True:
+                        expression_to_insert = '{:.150}'.format(input("Put here new description: ").capitalize()) + "."
+                        dot_in_input = 1
+                        if len(expression_to_insert) > dot_in_input:
+                            break
+                    if re.findall(r"[)(0]", expression_to_insert):
+                        print("Name contains one of the forbidden signs : '(', ')', '0'.")
+                        continue
+                    break
                 break
 
         ToDoArray.modify_item(searched_expression, expression_to_delete, expression_to_insert)
@@ -58,25 +83,28 @@ class ToDoArray():
             if searched_expression in line.split(")")[0]:
                 if expression_to_delete == "Change name.":
                     expression_to_delete = line.split(" ", maxsplit=1)[1].split("(")[0]
-                    # For the purpose of displaying new item in the next loop:
-                    searched_expression = expression_to_insert
-                    # Break here to avoid bug when someone will insert description "is not done"/ "is done".
+                    print("\nYou modified name of this item: ", line, "\n\nThe changes have been recorded.\n")
+                    line_to_insert = line.replace(expression_to_delete, expression_to_insert)
+                    todo_array[todo_array.index(line)] = line_to_insert
                     break
                 elif expression_to_delete == "Change description.":
                     expression_to_delete = line.split("(", maxsplit=1)[1].split(")")[0]
-                    searched_expression = expression_to_insert
+                    print("\nYou modified description of this item: ", line, "\n\nThe changes have been recorded.\n")
+                    line_to_insert = line.replace(expression_to_delete, expression_to_insert)
+                    todo_array[todo_array.index(line)] = line_to_insert
                     break
                 else:
                     expression_to_delete = line.split(")", maxsplit=1)[1]
-        print("\nYou have modified this item: ", line, "\n\nThe changes have been recorded.\n")
-        todo_array[todo_array.index(line)] = line.replace(expression_to_delete, expression_to_insert)
+                    print("\nYou modified todo status of this item: ", line, "\n\nThe changes have been recorded.\n")
+                    line_to_insert = line.replace(expression_to_delete, expression_to_insert)
+                    todo_array[todo_array.index(line)] = line_to_insert
+                    break
 
         with open(filename, "w", encoding="utf-8") as myfile:
 
             for line in todo_array:
-                myfile.write(line)
-                if searched_expression in line.split(")")[0]:
-                    print("Now it looks like this: ", line)
+                myfile.write(line)                           # plus zabezpiecz kazdy input przed spacjami
+            print("Now it looks like this: ", line_to_insert)
 
     def delete_item(filename='ToDo_list.txt'):
         with open(filename, "r", encoding="utf-8") as myfile:

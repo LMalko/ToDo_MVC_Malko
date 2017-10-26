@@ -6,27 +6,30 @@ import re
 def pass_todo_item_details():
 
     while True:
-        item_name = '{:.20}'.format(input("\nProvide item's name (max 20 characters). "))
-        if re.findall(r"[)(]", item_name):
-            print("Name contains one of the forbidden signs.")
+        while True:
+            item_name = '{:.20}'.format(input("\nProvide item's name (max 20 characters). "))
+            reasonable_input_minimum_length = 3
+            if len(item_name) > reasonable_input_minimum_length:
+                break
+            print("\n\nToo short.")
+        if re.findall(r"[)(0]", item_name):
+            print("Name contains one of the forbidden signs : '(', ')', '0'.")
             continue
         break
 
     while True:
-        item_description = '{:.150}'.format(input("\nProvide item's description (max 150 characters). "))
-        if re.findall(r"[)(]", item_description):
-            print("Name contains one of the forbidden signs.")
+        while True:
+            item_description = '{:.150}'.format(input("\nProvide item's description (max 150 characters). "))
+            reasonable_input_minimum_length = 5
+            if len(item_description) > reasonable_input_minimum_length:
+                break
+            print("\n\nToo short.")
+        if re.findall(r"[)(0]", item_description):
+            print("Name contains one of the forbidden signs : '(', ')', '0'.")
             continue
         break
 
-    while True:
-        item_is_done = input("\nHas item been done already (y/n)? ")
-        if item_is_done.lower() == "y":
-            new_item = ToDoItem(item_name, item_description, True)
-            break
-        if item_is_done.lower() == "n":
-            new_item = ToDoItem(item_name, item_description)
-            break
+    new_item = ToDoItem(item_name, item_description)
 
     new_item.add_item()
     main()
