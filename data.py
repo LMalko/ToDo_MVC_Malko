@@ -40,6 +40,7 @@ class ToDoArray():
                         clear_screen()
                         print("\nNext time be more specific.\n")
                 if item_found is False:
+                    clear_screen()
                     print("\nPlease try again.\n")
 
             ToDoArray.choose_name_or_description(searched_expression)
