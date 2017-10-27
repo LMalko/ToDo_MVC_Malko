@@ -38,69 +38,70 @@ def pass_todo_item_details():
     main()
 
 
+def ask_for_return_to_main():
+    go_to_main = input("\n\nPress enter to continue")
+    main()
+
+
+def find_item_to_change():
+    while True:
+        searched_expression = input("\nWhich item needs status change? ")
+        reasonable_input_minimum_length = 5
+        if len(searched_expression) > reasonable_input_minimum_length:
+            break
+        print("\n\nToo short.")
+    return searched_expression
+
+
 def call_function_according_to_user_choice(user_choice):
 
     if user_choice == "1":
         pass_todo_item_details()
         main()
+
     elif user_choice == "2":
-        while True:
-            searched_expression = input("\nWhich item's is done? ")
-            reasonable_input_minimum_length = 5
-            if len(searched_expression) > reasonable_input_minimum_length:
-                break
-            print("\n\nToo short.")
+        searched_expression = check_item_to_change_status()
         clear_screen()
         ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "3":
-        while True:
-            searched_expression = input("\nWhich item's is not done? ")
-            reasonable_input_minimum_length = 5
-            if len(searched_expression) > reasonable_input_minimum_length:
-                break
-            print("\n\nToo short.")
+        searched_expression = check_item_to_change_status()
         clear_screen()
         ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "4":
         clear_screen()
         ToDoArray.choose_which_item_to_change()
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "5":
         clear_screen()
         ToDoArray.delete_item()
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "6":
         clear_screen()
-        while True:
-            keyword = input("\nWhich item You are looking for? ")
-            reasonable_length = 3
-            if len(keyword) > reasonable_length:
-                break
-            print("Too short.")
+        keyword = check_item_to_change_status()
         ToDoArray.display_specific_item(keyword)
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "7":
         clear_screen()
         ToDoArray.display_all()
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "8":
         clear_screen()
         ToDoArray.display_done()
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "9":
         clear_screen()
         ToDoArray.display_to_be_done()
-        go_to_next_screen = input("\n\nPress enter to continue")
-        main()
+        ask_for_return_to_main()
+
     elif user_choice == "0":
         clear_screen()
         quit()
