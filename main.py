@@ -45,7 +45,7 @@ def ask_for_return_to_main():
 
 def find_item_to_change():
     while True:
-        searched_expression = input("\nWhich item needs status change? ")
+        searched_expression = input("\nWhich item You have in mind? ")
         reasonable_input_minimum_length = 5
         if len(searched_expression) > reasonable_input_minimum_length:
             break
@@ -82,11 +82,13 @@ def call_function_according_to_user_choice(user_choice):
 
     elif user_choice == "5":
         clear_screen()
+        ToDoArray.display_all()
         ToDoArray.delete_item()
         ask_for_return_to_main()
 
     elif user_choice == "6":
         clear_screen()
+        ToDoArray.display_all()
         keyword = find_item_to_change()
         ToDoArray.display_specific_item(keyword)
         ask_for_return_to_main()
