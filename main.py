@@ -60,6 +60,7 @@ def call_function_according_to_user_choice(user_choice):
         main()
 
     elif user_choice == "2":
+        clear_screen()
         ToDoArray.display_all()
         searched_expression = find_item_to_change()
         clear_screen()
@@ -67,6 +68,7 @@ def call_function_according_to_user_choice(user_choice):
         ask_for_return_to_main()
 
     elif user_choice == "3":
+        clear_screen()
         ToDoArray.display_all()
         searched_expression = find_item_to_change()
         clear_screen()
