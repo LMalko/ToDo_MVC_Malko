@@ -14,8 +14,10 @@ def print_options():
 def pretty_print_table(items_details):
 
     print("\n\nID   NAME     (DESCRIPTION)   STATUS\n")
+
     for line in items_details:
         print(line)
+
     if items_details == []:
         print("No records found !")
 
