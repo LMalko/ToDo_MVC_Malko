@@ -60,13 +60,13 @@ def call_function_according_to_user_choice(user_choice):
         main()
 
     elif user_choice == "2":
-        searched_expression = check_item_to_change_status()
+        searched_expression = find_item_to_change()
         clear_screen()
         ToDoArray.modify_item(searched_expression, "IS NOT DONE", " IS DONE\n")
         ask_for_return_to_main()
 
     elif user_choice == "3":
-        searched_expression = check_item_to_change_status()
+        searched_expression = find_item_to_change()
         clear_screen()
         ToDoArray.modify_item(searched_expression, "IS DONE", " IS NOT DONE\n")
         ask_for_return_to_main()
@@ -83,7 +83,7 @@ def call_function_according_to_user_choice(user_choice):
 
     elif user_choice == "6":
         clear_screen()
-        keyword = check_item_to_change_status()
+        keyword = find_item_to_change()
         ToDoArray.display_specific_item(keyword)
         ask_for_return_to_main()
 
