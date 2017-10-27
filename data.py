@@ -24,7 +24,7 @@ class ToDoArray():
             while not item_found:
                 while True:
                         ToDoArray.display_all()
-                        searched_expression = input("\nWhich item to modify? ")
+                        searched_expression = input("\nWhich item to modify (search by ID, name or description)? ")
                         reasonable_length = 5
                         if len(searched_expression) > reasonable_length:
                             break
@@ -108,10 +108,12 @@ class ToDoArray():
                     break
 
         with open(filename, "w", encoding="utf-8") as myfile:
-
-            for line in todo_array:
-                myfile.write(line)
-            print("\nNow it looks like this: ", line_to_insert)
+            try:
+                for line in todo_array:
+                    myfile.write(line)
+                print("\nNow it looks like this: ", line_to_insert)
+            except UnboundLocalError:
+                print("No such item.")
 
     def delete_item(filename='ToDo_list.txt'):
         with open(filename, "r", encoding="utf-8") as myfile:
@@ -120,7 +122,7 @@ class ToDoArray():
             while True:
                 items_deleted = 0
                 while True:
-                    searched_expression = input("Choose item to delete: ")
+                    searched_expression = input("Choose item to delete (search by ID, name or description): ")
                     reasonable_input_minimum_length = 5
                     if len(searched_expression) > reasonable_input_minimum_length:
                         break

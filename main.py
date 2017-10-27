@@ -45,7 +45,7 @@ def ask_for_return_to_main():
 
 def find_item_to_change():
     while True:
-        searched_expression = input("\nWhich item You have in mind? ")
+        searched_expression = input("\nWhich item You have in mind (search by ID, name or description)? ")
         reasonable_input_minimum_length = 5
         if len(searched_expression) > reasonable_input_minimum_length:
             break
